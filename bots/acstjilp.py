@@ -25,14 +25,16 @@ def check_mentions(api, keywords, since_id):
 
         if '#vaccinatieschade' in tweet.text.lower():
             tweet_text = acsvaccinatieschade.report_vaccinatieschade(
-                tweet.user.name
+                tweet.user.screen_name
                 )
 
         elif '#adviesjargon' in tweet.text.lower(tweet.user.name):
-            tweet_text = acsadviesjargon.report_adviesjargon()
+            tweet_text = acsadviesjargon.report_adviesjargon(
+                tweet.user.screen_name
+                )
 
         if tweet_text:
-            logger.info(f"Answering to {tweet.user.name}")
+            logger.info(f"Answering to {tweet.user.screen_name}")
 
             try:
                 api.update_status(
