@@ -28,7 +28,7 @@ def check_mentions(api, keywords, since_id):
                 tweet.user.screen_name
                 )
 
-        elif '#adviesjargon' in tweet.text.lower(tweet.user.name):
+        elif '#adviesjargon' in tweet.text.lower():
             tweet_text = acsadviesjargon.report_adviesjargon(
                 tweet.user.screen_name
                 )
