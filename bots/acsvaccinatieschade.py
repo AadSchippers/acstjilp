@@ -9,6 +9,8 @@ items1 = [
     "dansleraar",
     "tante",
     "achternicht",
+    "nicht",
+    "achterneef",
     "neef",
     "therapeut",
     "minnaar",
@@ -24,6 +26,8 @@ items1 = [
     "kapster",
     "nieuwe vlam",
     "imaan",
+    "dominee",
+    "pastoor",
     "yogadocent",
     "voetbaltrainer",
     "stagiaire",
@@ -77,6 +81,7 @@ items3 = [
     "doorbloede",
     "verkleurde",
     "afgestorven",
+    "gebarsten",
 ]
 items4 = [
     "bilspleet",
@@ -105,6 +110,8 @@ items4 = [
     "keel",
     "voorhoofdholte",
     "klaplong",
+    "kleine teen",
+    "wijsvinger",
 ]
 items5 = [
     "gesneuveld",
@@ -114,9 +121,14 @@ items5 = [
     "een familiebericht in de krant",
     "communistisch",
     "spontaan ontploft",
+    "chronisch dronken",
+    "ontslagen",
+    "impotent",
+    "onvruchtbaar",
+    "mank",
+    "altijd ongesteld",
     "demissionair minister",
     "schijnzwanger",
-    "mijn bitch",
     "een stuk vlees in de vriezer",
     "rancuneuze incel",
     "van de verkeerde kant",
@@ -126,7 +138,7 @@ items5 = [
     "een hoop as in een urn",
     "een T-rex",
     "amateurwielrenner",
-    "een bloeddorstige zomble",
+    "een bloeddorstige zombie",
     "een Golden Retreiver",
     "alcoholist met penisnijd",
     "voltooid verleden tijd",
@@ -143,7 +155,6 @@ def random_item(items):
 
 def report_vaccinatieschade(reply_to):
     reply = (
-        "Moet je horen @" + reply_to + ":\n\n" +
         "De " +
         random_item(items1) + " " +
         "van mijn " +
@@ -153,8 +164,10 @@ def report_vaccinatieschade(reply_to):
         random_item(items4) + " " +
         "en is nu " +
         random_item(items5) + ".\n\n"
-        "#VaccinatieSchade bestaat niet, #COVID19 en #LongCovid wél. " +
-        "#laatjevaccineren"
+        "#VaccinatieSchade bestaat niet @"
+        + reply_to +
+        ", #COVID19 en #LongCovid wél. " +
+        "#laatjevaccineren. Voor jezelf, voor elkaar."
     )
 
     return reply

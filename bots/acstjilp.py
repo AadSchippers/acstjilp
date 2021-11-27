@@ -39,7 +39,7 @@ def check_mentions(api, keywords, since_id):
                     status=tweet_text,
                     in_reply_to_status_id=tweet.id,
                 )
-            except:
+            except Exception:
                 pass
 
     return new_since_id
@@ -49,13 +49,13 @@ def main():
     api = create_api()
     try:
         f = open("last_since_id.txt", "r")
-    except:
+    except Exception:
         f = open("last_since_id.txt", "w")
         f.close()
         f = open("last_since_id.txt", "r")
     try:
         since_id = int(f.read())
-    except:
+    except Exception:
         since_id = 1
     f.close()
     while True:
