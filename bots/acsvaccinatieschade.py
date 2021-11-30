@@ -154,6 +154,9 @@ def random_item(items):
 
 
 def report_vaccinatieschade(reply_to):
+    if not reply_to:
+        reply_to = ""
+        
     reply = (
         "De " +
         random_item(items1) + " " +
@@ -164,7 +167,7 @@ def report_vaccinatieschade(reply_to):
         random_item(items4) + " " +
         "en is nu " +
         random_item(items5) + ".\n\n"
-        "#VaccinatieSchade bestaat niet @"
+        "#VaccinatieSchade bestaat niet"
         + reply_to +
         ", #COVID19 en #LongCovid wél. " +
         "#laatjevaccineren. Voor jezelf, voor elkaar."

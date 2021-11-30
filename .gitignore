@@ -1,0 +1,9 @@
+.vscode
+bots/credentials.py
+bots/__pycache__/
+last_since_id.txt
+set_environment.sh
+tombola.jpeg
+acstjilp.ini
+
+

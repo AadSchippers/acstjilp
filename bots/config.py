@@ -28,5 +28,5 @@ def create_api():
         logger.error("Error creating API", exc_info=True)
         raise e
     logger.info("API created")
-    
+
     return api
