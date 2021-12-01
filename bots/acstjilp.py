@@ -168,7 +168,7 @@ def main():
             datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
             ". Waiting for " +
             str(settings.SLEEP_TIME) +
-            " minutes."
+            " seconds."
             )
         time.sleep(settings.SLEEP_TIME)
 
