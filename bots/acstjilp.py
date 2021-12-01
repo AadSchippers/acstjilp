@@ -85,7 +85,7 @@ def check_mentions(api, since_id):
 
 def regular_tweet(api, LastRegularTweet):
 
-    if int(LastRegularTweet) + settings.HOURS_BETWEEN_REGULAR_TWEET < int(datetime.datetime.now().strftime("%Y%j%H")):
+    if int(LastRegularTweet) + settings.HOURS_BETWEEN_REGULAR_TWEET <= int(datetime.datetime.now().strftime("%Y%j%H")):
         LastRegularTweet = datetime.datetime.now().strftime("%Y%j%H")
         do_tweet(api, "#VaccinatieSchade", None)
 
