@@ -154,9 +154,6 @@ def random_item(items):
 
 
 def report_vaccinatieschade(reply_to):
-    if not reply_to:
-        reply_to = ""
-        
     reply = (
         "De " +
         random_item(items1) + " " +

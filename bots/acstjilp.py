@@ -78,7 +78,7 @@ def check_mentions(api, since_id):
         elif "adviesgargon"  in tweet.text.lower():
             tweet_hashag = "#AdviesJargon"
 
-        do_tweet(api, tweet_hashag, tweet.user.screen_name)
+        do_tweet(api, tweet_hashag, tweet)
 
     return new_since_id
 
@@ -92,11 +92,16 @@ def regular_tweet(api, LastRegularTweet):
     return LastRegularTweet
 
 
-def do_tweet(api, tweet_hastag, screen_name):
+def do_tweet(api, tweet_hastag, tweet):
     tweet_text = None
 
-    if screen_name:
-        screen_name = " @" + screen_name
+    if tweet:
+        screen_name = " @" + tweet.user.screen_name
+        tweet_id = tweet.id
+    else:
+        screen_name = ""
+        tweet_id = 0
+
 
     if tweet_hastag.lower() == "#vaccinatieschade":
         tweet_text = acsvaccinatieschade.report_vaccinatieschade(
@@ -112,25 +117,29 @@ def do_tweet(api, tweet_hastag, screen_name):
         if screen_name:
             logger.info(
                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
-                "Answering to" +
-            screen_name
+                " Answering to" + screen_name
             )
         else:
             logger.info(
                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
-                "Tweeting"
+                " Tweeting"
                 )
 
         try:
-            if settings.TESTING:
-                print(tweet_text)
-            else:
+            if settings.TESTING == False:
                 api.update_status(
                     status=tweet_text,
-                    in_reply_to_status_id=tweet.id,
+                    in_reply_to_status_id=tweet_id,
+                )
+            logger.info(
+                datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
+                " " + tweet_text
                 )
         except Exception:
-            print(tweet_text)
+            logger.error(
+                datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
+                "Error tweeting: " + tweet_text
+                )
 
     return
 
