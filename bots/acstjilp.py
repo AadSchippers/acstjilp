@@ -117,12 +117,12 @@ def do_tweet(api, tweet_hastag, tweet):
         if screen_name:
             logger.info(
                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
-                " Answering to" + screen_name
+                ". Answering to" + screen_name
             )
         else:
             logger.info(
                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
-                " Tweeting"
+                ". Tweeting"
                 )
 
         try:
@@ -133,12 +133,12 @@ def do_tweet(api, tweet_hastag, tweet):
                 )
             logger.info(
                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
-                " " + tweet_text
+                ". " + tweet_text
                 )
         except Exception:
             logger.error(
                 datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
-                "Error tweeting: " + tweet_text
+                ". Error tweeting: " + tweet_text
                 )
 
     return
@@ -150,12 +150,13 @@ def main():
     IniValues = read_inifile()
     since_id = int(IniValues["LastSinceId"])
     LastRegularTweet = int(IniValues["LastRegularTweet"])
-    loop_forever = True
-    while loop_forever:
-        try:
-            loop_forever = settings.LOOP_FOREVER
-        except Exception:
-            loop_forever = False
+    try:
+        cycles = settings.CYCLES
+    except Exception:
+        cycles = 1
+    while cycles != 0:
+        if cycles > 0:
+            cycles += -1
         since_id = check_mentions(
             api, since_id
             )
@@ -167,9 +168,9 @@ def main():
         logger.info(
             datetime.datetime.now().strftime("%Y-%m-%d %H:%M") +
             ". Waiting for " +
-            str(settings.SLEEP_TIME) +
-            " seconds."
-            )
+            str(datetime.timedelta(seconds=settings.SLEEP_TIME))            )
+        if cycles == 0:
+            break
         time.sleep(settings.SLEEP_TIME)
 
 
